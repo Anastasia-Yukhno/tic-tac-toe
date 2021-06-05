@@ -58,7 +58,7 @@ body, li, ul, p{
     color: rgb(255, 255, 255);
     position: relative;
     top: 610px;
-    left: 160px;
+    left: 150px;
     max-width: 600px;
 }
 td {
@@ -69,6 +69,7 @@ td {
     td > p{
         margin: 10px;
         font-size: 20px;
+        width: 120px;
     }
 
 .current_move_player{
