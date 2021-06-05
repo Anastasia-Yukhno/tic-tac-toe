@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Tic tac toe</title>
- 
+
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="shortcut icon" href="#" />
     <meta name="viewport" content="width=device-width">
-    <meta charset="utf-8">
+
     <script defer src="script.js"></script>
 
 </head>
+
 <body onkeydown="inputWithKeyboard(event)">
     <div class="wrapper">
         <div class="container">
@@ -29,22 +31,36 @@
                     <div class="cell" onclick="inputWithClick(event, 9)"></div>
                 </div>
 
-                <div class="gamesFinish"><p ></p></div>
+                <div class="gamesFinish">
+                    <p></p>
+                </div>
                 <div class="scoreboard">
                     <table class="scoreboard_table">
                         <tr>
-                            <td><p id="player_x">Player (x)</p></td>
-                            <td><p class="tie">Tie</p></td>
-                            <td><p id="player_o">Computer (o)</p></td>
-                            
+                            <td>
+                                <p id="player_x">Player (x)</p>
+                            </td>
+                            <td>
+                                <p class="tie">Tie</p>
+                            </td>
+                            <td>
+                                <p id="player_o">Computer (o)</p>
+                            </td>
+
                         </tr>
 
                         <tr>
-                            <td><p class="player_x content">0</p></td>
-                            <td><p class="tie content">0</p></td>
-                            <td><p class="player_o content">0</p></td>
+                            <td>
+                                <p class="player_x content">0</p>
+                            </td>
+                            <td>
+                                <p class="tie content">0</p>
+                            </td>
+                            <td>
+                                <p class="player_o content">0</p>
+                            </td>
                         </tr>
-                    
+
                     </table>
                 </div>
 
@@ -52,7 +68,9 @@
                     <div class="new_game" onclick="newGame()">NEW GAME</div>
                     <div class="mode">
                         <div onclick="modes(1)" class="currentMode" id="mouse"><img src="mouse.png" id="img_1"></div>
-                        <div onclick="modes(2)" class="inactiveMode" id="keyboardAndMouse"><img src="keyboard.png" id="img_2"></div>
+                        <div onclick="modes(2)" class="inactiveMode" id="keyboardAndMouse">
+                            <img src="keyboard.png" id="img_2">
+                        </div>
                         <div id="popup" class="pop_up_mode">
                             <div class="pop_up_content">
                                 Player 1 - mouse <br>
@@ -60,7 +78,7 @@
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
 
                 <div class="endOfTheGame">
                     <p class="message_with_results"></p>
@@ -71,22 +89,23 @@
                     <button onclick="retry()" class="bt_retry">retry</button>
 
                 </div>
-                
-                <div class="select_mode_players">    
-                    <div class="select_mode_2players inactiveMode"  onclick="changePlayer('2p')">2P</div>
-                    <div class="select_mode_1player currentMode"   onclick="changePlayer('1p')">1P</div> 
-        
+
+                <div class="select_mode_players">
+                    <div class="select_mode_2players inactiveMode" onclick="changePlayer('2p')">2P</div>
+                    <div class="select_mode_1player currentMode" onclick="changePlayer('1p')">1P</div>
+
                     <div id="select_x_or_o" class="hidden_select_x_or_o">
-                        <div  class="select_mode_1player_x"  onclick="selectXorO('x')">x</div> 
-                        <div  class="select_mode_1player_o" onclick="selectXorO('o')">o</div> 
+                        <div class="select_mode_1player_x" onclick="selectXorO('x')">x</div>
+                        <div class="select_mode_1player_o" onclick="selectXorO('o')">o</div>
                     </div>
                 </div>
 
-                
-            </div> 
+
+            </div>
         </div>
-        
+
     </div>
-    
+
 </body>
+
 </html>
