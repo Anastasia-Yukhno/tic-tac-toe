@@ -262,12 +262,12 @@ td {
     color: black;
 }
 
-.bt_retry:hover, .bt_retry:active {
+.bt_continue:hover, .bt_continue:active {
     background-color: rgb(255, 255, 255);
     color: black;
 }
 
-.bt_retry {
+.bt_continue {
     position: absolute;
     top: 110px;
     left: 210px;
