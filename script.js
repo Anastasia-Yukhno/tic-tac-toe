@@ -30,7 +30,6 @@ let isComputer_O = true;
 let isMoveOfComputer = true;
 let isNewGame = true;
 //messages
-let message_winn_player = " won!";
 let message_tie = "Tie!";
 let message_with_results = document.querySelector(".message_with_results");
 let message_with_results_tie = document.querySelector(".message_with_results_tie");
@@ -63,54 +62,54 @@ let endOfTheGame = document.querySelector(".endOfTheGame");
 //input 
 function inputWithKeyboard(event) {
     if (endOfTheGame.classList.contains("show_result") && event.code == "Enter") {
-        (retry)();
+        continueGame();
         return false;
     }
     if (!isinputWithKeyboardAndMouse || isThreeInARow || endOfTheGame.classList.contains("show_result")) return false;
     if (isOnePlayer && isComputer_O && !isXmove || isOnePlayer && !isComputer_O && isXmove) return false;
     switch (event.code) {
         case "Numpad7":
-            (move)(allCells.children[0], 1);
+            move(allCells.children[0], 1);
             clearHighlight();
             break;
 
         case "Numpad8":
-            (move)(allCells.children[1], 2);
+            move(allCells.children[1], 2);
             clearHighlight();
             break;
 
         case "Numpad9":
-            (move)(allCells.children[2], 3);
+            move(allCells.children[2], 3);
             clearHighlight();
             break;
 
         case "Numpad4":
-            (move)(allCells.children[3], 4);
+            move(allCells.children[3], 4);
             clearHighlight();
             break;
 
         case "Numpad5":
-            (move)(allCells.children[4], 5);
+            move(allCells.children[4], 5);
             clearHighlight();
             break;
 
         case "Numpad6":
-            (move)(allCells.children[5], 6);
+            move(allCells.children[5], 6);
             clearHighlight();
             break;
 
         case "Numpad1":
-            (move)(allCells.children[6], 7);
+            move(allCells.children[6], 7);
             clearHighlight();
             break;
 
         case "Numpad2":
-            (move)(allCells.children[7], 8);
+            move(allCells.children[7], 8);
             clearHighlight();
             break;
 
         case "Numpad3":
-            (move)(allCells.children[8], 9);
+            move(allCells.children[8], 9);
             clearHighlight();
             break;
     }
@@ -167,7 +166,7 @@ function inputWithKeyboard(event) {
                         break;
                     }
                 }
-                (move)(highlightedCell, j++);
+                move(highlightedCell, j++);
                 break;
         }
     }
@@ -175,7 +174,7 @@ function inputWithKeyboard(event) {
 
 function inputWithClick(event, key) {
     let cell = event.target;
-    (move)(cell, key);
+    move(cell, key);
 }
 
 function move(cell, key) {
@@ -184,13 +183,13 @@ function move(cell, key) {
         isNewGame = false;
     }
     if (cells[key] != 0) return false;
-    (audioAfterClick)();
+    audioAfterClick();
 
     if (isXmove) {          // x 
         cells[key] = 1;
         cell.classList.remove("highlighted_cell");
         cell.classList.add("x_move");
-        (checkIsThreeInARow)();
+        checkIsThreeInARow();
         isXmove = false;
         if (scoreboard_player_o.classList.contains("current_move_player")) {
             scoreboard_player_o.classList.remove("current_move_player");
@@ -202,7 +201,7 @@ function move(cell, key) {
         cell.classList.remove("highlighted_cell");
         cell.classList.add("null_move");
 
-        (checkIsThreeInARow)();
+        checkIsThreeInARow();
         isXmove = true;
         if (scoreboard_player_x.classList.contains("current_move_player")) {
             scoreboard_player_x.classList.remove("current_move_player");
@@ -212,7 +211,7 @@ function move(cell, key) {
     moveCount++;
 
     if (isThreeInARow) {
-        (clearHighlight)();
+        clearHighlight();
         if (isXmove) {
             winnsPlayerO++;
             scoreboard_player_o_content.textContent = winnsPlayerO;
@@ -238,28 +237,29 @@ function showResult(count) {
         document.querySelector(".message_with_results_tie").textContent = message_tie;
     } else if (!isXmove) {
         if (isOnePlayer && isComputer_O) {
-            message_with_results.textContent = computer_o + message_winn_player;
+            message_with_results.textContent = `${computer_o} win`;
+
         } else if (isOnePlayer && !isComputer_O) {
-            message_with_results.textContent = player_o + message_winn_player;
+            message_with_results.textContent = `${player_o} win`;
         }
         if (!isOnePlayer) {
-            message_with_results.textContent = secondPlayer_o + message_winn_player;
+            message_with_results.textContent = `${secondPlayer_o} win`;
         }
     } else {
         if (isOnePlayer && isComputer_O) {
-            message_with_results.textContent = player_x + message_winn_player;
+            message_with_results.textContent = `${player_x} win`;
         } else if (isOnePlayer && !isComputer_O) {
-            message_with_results.textContent = computer_x + message_winn_player;
+            message_with_results.textContent = `${computer_x} win`;
         }
         if (!isOnePlayer) {
-            message_with_results.textContent = firstPlayer_x + message_winn_player;
+            message_with_results.textContent = `${firstPlayer_x} win`;
         }
     }
     count_of_moves_text_content.textContent = count;
 }
 
-function retry() {
-    (clearCells)();
+function continueGame() {
+    clearCells();
     if (endOfTheGame.classList.contains("show_result")) {
         endOfTheGame.classList.toggle("show_result");
     }
@@ -272,7 +272,7 @@ function retry() {
 }
 
 function newGame() {
-    (clearCells)();
+    clearCells();
     if (endOfTheGame.classList.contains("show_result")) {
         endOfTheGame.classList.toggle("show_result");
     }
@@ -319,7 +319,7 @@ function playWithComputer() {
             for (let valueOfCombination = 0; valueOfCombination < 3; valueOfCombination++) {
                 if (ourCombination[valueOfCombination] == 0) {
                     let cell = winnsCombinations[comb][valueOfCombination];
-                    (move)(allCells.children[cell - 1], cell);
+                    move(allCells.children[cell - 1], cell);
                     return false;
                 }
             }
@@ -327,7 +327,7 @@ function playWithComputer() {
             for (let valueOfCombination = 0; valueOfCombination < 3; valueOfCombination++) {
                 if (ourCombination[valueOfCombination] == 0) {
                     let cell = winnsCombinations[comb][valueOfCombination];
-                    (move)(allCells.children[cell - 1], cell);
+                    move(allCells.children[cell - 1], cell);
                     return false;
                 }
             }
@@ -355,7 +355,7 @@ function playWithComputer() {
             for (let valueOfCombination = 0; valueOfCombination < 3; valueOfCombination++) {
                 if (ourCombination[valueOfCombination] == 0) {
                     let cell = winnsCombinations[comb][valueOfCombination];
-                    (move)(allCells.children[cell - 1], cell);
+                    move(allCells.children[cell - 1], cell);
                     return false;
                 }
             }
@@ -363,7 +363,7 @@ function playWithComputer() {
             for (let valueOfCombination = 0; valueOfCombination < 3; valueOfCombination++) {
                 if (ourCombination[valueOfCombination] == 0) {
                     let cell = winnsCombinations[comb][valueOfCombination];
-                    (move)(allCells.children[cell - 1], cell);
+                    move(allCells.children[cell - 1], cell);
                     return false;
                 }
             }
@@ -391,13 +391,13 @@ function playWithComputer() {
             for (let valueOfCombination = 0; valueOfCombination < 3; valueOfCombination++) {
                 if (ourCombination[valueOfCombination] == 0) {
                     let cell = winnsCombinations[comb][valueOfCombination];
-                    (move)(allCells.children[cell - 1], cell);
+                    move(allCells.children[cell - 1], cell);
                     return false;
                 }
             }
         } else if (countOfNull === 3) {
-            (findRandomNumber)(comb);
-            (move)(allCells.children[randomCell - 1], randomCell);
+            findRandomNumber(comb);
+            move(allCells.children[randomCell - 1], randomCell);
             return false;
         }
     }
@@ -423,7 +423,7 @@ function playWithComputer() {
             for (let valueOfCombination = 0; valueOfCombination < 3; valueOfCombination++) {
                 if (ourCombination[valueOfCombination] == 0) {
                     let cell = winnsCombinations[comb][valueOfCombination];
-                    (move)(allCells.children[cell - 1], cell);
+                    move(allCells.children[cell - 1], cell);
                     return false;
                 }
             }
@@ -459,7 +459,7 @@ function changePlayer(x) {
                 document.querySelector(".select_mode_2players").classList.remove("currentMode");
                 document.querySelector(".select_mode_2players").classList.add("inactiveMode");
             }
-            (selectXorO)("x");
+            selectXorO("x");
             break;
     }
 }
@@ -480,7 +480,7 @@ function selectXorO(select) {
             secondScoreboard.textContent = player_o;
             break;
     }
-    (newGame)();
+    newGame();
     document.querySelector("#select_x_or_o").classList.toggle("hidden_select_x_or_o");
     document.querySelector("#select_x_or_o").classList.toggle("show_select_x_or_o");
 }
@@ -495,7 +495,7 @@ function modes(mode) {
     }
     if (mode == 1) {
         isinputWithKeyboardAndMouse = false;
-        (clearHighlight)();
+        clearHighlight();
         twoModes[0].classList.remove("inactiveMode");
         twoModes[0].classList.add("currentMode");
     } else {
